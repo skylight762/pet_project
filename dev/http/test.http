@@ -1,0 +1,15 @@
+PATCH localhost:8080/accounts/refill
+Content-Type: application/json
+
+{"id": 1,"sum": 200}
+###
+PATCH localhost:8080/accounts/withdraw
+Content-Type: application/json
+
+{"id": 1,"sum": 300}
+
+###
+PATCH localhost:8080/accounts/transfer
+Content-Type: application/json
+
+{"idFrom": 1, "idTo": 2, "transferSum": 50}
