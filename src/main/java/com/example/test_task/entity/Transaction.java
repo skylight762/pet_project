@@ -14,16 +14,21 @@ import java.time.ZonedDateTime;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "transaction_id")
+    @Column(name = "transaction_id")
     private Integer id;
+
     @Column(name = "account_id")
     private Integer accountId;
-    @Column (name = "operation_name")
+
+    @Column(name = "operation_name")
     private String operationName;
-    @Column (name = "value")
+
+    @Column(name = "value")
     private BigDecimal value;
-    @Column (name = "start_time")
-    private ZonedDateTime startTime =ZonedDateTime.now();
-    @Column (name = "end_time")
+
+    @Column(name = "start_time")
+    private ZonedDateTime startTime = ZonedDateTime.now();
+
+    @Column(name = "end_time")
     private ZonedDateTime endTime;
 }

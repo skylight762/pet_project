@@ -16,11 +16,14 @@ import java.math.BigDecimal;
 public class Account {
     @Id
     @Column(name = "account_id")
-    Integer accountId;
+    private Integer accountId;
+
     @Column(name = "user_id")
-    Integer userId;
+    private Integer userId;
+
     @Column(name = "user_name")
-    String userName;
+    private String userName;
+
     @Column(name = "sum")
-    BigDecimal sum;
+    private BigDecimal sum;
 }
