@@ -1,15 +1,30 @@
+### пополнение
 PATCH localhost:8080/accounts/refill
 Content-Type: application/json
 
-{"id": -1,"sum": 200}
-###
+{"id": 1,"sum": 200}
+### списание
 PATCH localhost:8080/accounts/withdraw
 Content-Type: application/json
 
 {"id": 1,"sum": 300}
 
-###
+### перевод
 PATCH localhost:8080/accounts/transfer
 Content-Type: application/json
 
 {"idFrom": 1, "idTo": 2, "transferSum": 50}
+
+### Rabbit пополнение
+PATCH localhost:8080/accounts/refill_with_rabbit/
+Content-Type: application/json
+
+{"id": 1,"sum": 200}
+
+### Rabbit списание
+PATCH localhost:8080/accounts/withdraw_with_rabbit
+Content-Type: application/json
+
+{"id": 1,"sum": 200}
+### Rabbit перевод
+PATCH localhost:8080/accounts/transfer_with_rabbit

@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 @Entity(name = "TRANSACTION")
 @Accessors(chain = true)
 public class Transaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transaction_id")

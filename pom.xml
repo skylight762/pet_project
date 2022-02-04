@@ -25,7 +25,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -42,6 +41,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!--Swagger-->
 
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
@@ -53,19 +53,20 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.4</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->
+        <!-- RabbitMQ-->
+
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>2.4.2</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>7.0.0.Final</version>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.14.1</version>
         </dependency>
-
-
-
     </dependencies>
 
     <build>

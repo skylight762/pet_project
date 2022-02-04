@@ -4,9 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
@@ -14,12 +13,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class Account {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Integer accountId;
-
-    @Column(name = "user_id")
-    private Integer userId;
 
     @Column(name = "user_name")
     private String userName;

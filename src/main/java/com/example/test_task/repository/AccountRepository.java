@@ -10,9 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-    @Query(value = "select acc \n" +
-            "from ACCOUNT as acc \n" +
+    @Query(value = "select acc " +
+            "from ACCOUNT as acc " +
             "where acc.accountId = :accountId")
     Account getAccountByAccountId(@Param("accountId") Integer Id);
 
+    @Query(value = "select acc.accountId, acc.userName " +
+            "from ACCOUNT as acc " +
+    "where acc.accountId = :accountId and acc.userName = :userName")
+    Account getAccountByAccountIdAndUserName(@Param("accountId") Integer Id,
+                                             @Param("userName") String name);
+    Account findAccountByUserName(String userName);
 }

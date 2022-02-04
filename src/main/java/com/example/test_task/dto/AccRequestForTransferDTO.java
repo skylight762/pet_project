@@ -4,14 +4,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @NoArgsConstructor
 @Data
 @Schema(name = "AccRequestForTransferDTO", description = "DTO для перевода со счета на счет")
-public class AccRequestForTransferDTO {
+public class AccRequestForTransferDTO implements Serializable {
 
     @Schema(name = "idFrom", description = "номер счета с которого совершается перевод")
     private Integer idFrom;

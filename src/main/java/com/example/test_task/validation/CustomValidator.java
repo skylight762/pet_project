@@ -34,5 +34,7 @@ public class CustomValidator {
         Account acc = accRepo.getAccountByAccountId(id);
         return acc.getSum().compareTo(withdrawSum) >= 0;
     }
-
+    public  boolean validateName(String name){
+        return name.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
+    }
 }

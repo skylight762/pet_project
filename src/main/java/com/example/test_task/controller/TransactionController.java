@@ -5,25 +5,24 @@ import com.example.test_task.dto.AccRequestForTransferDTO;
 import com.example.test_task.exceptions.TransferException;
 import com.example.test_task.service.AccountOperationService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @RestController
 @Slf4j
 @Validated
 @Tag(name = "Контроллер транзакций", description = "контроллер отвечающий за денежные операции со счетами")
 public class TransactionController {
-    @Autowired
-    private final AccountOperationService accountOperationService;
 
+    @Autowired
+    RabbitTemplate template;
+    private final AccountOperationService accountOperationService;
 
     public TransactionController(AccountOperationService accountOperationService) {
         this.accountOperationService = accountOperationService;
@@ -43,7 +42,7 @@ public class TransactionController {
             description = "Списание денежной суммы (sum) со счета по ид (id) счета"
     )
     @PatchMapping("accounts/withdraw")
-    public void removeMoneyById(@RequestBody AccRequestDTO accRequestDTO) throws TransferException {
+    public void removeMoneyById(@RequestBody AccRequestDTO accRequestDTO) {
         accountOperationService.removeMoney(accRequestDTO);
     }
 
@@ -52,7 +51,7 @@ public class TransactionController {
             description = "Перевод денежной суммы (transferSum) со счета (idFrom) на счет (idTo) по ид счетов"
     )
     @PatchMapping("accounts/transfer")
-    public void transferById(@RequestBody AccRequestForTransferDTO accRequestForTransferDTO) throws TransferException {
+    public void transferById(@RequestBody AccRequestForTransferDTO accRequestForTransferDTO) {
         accountOperationService.transferMoney(accRequestForTransferDTO);
     }
 }

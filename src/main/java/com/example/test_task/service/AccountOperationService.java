@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 
 
 @Service
@@ -48,7 +49,7 @@ public class AccountOperationService {
     }
 
     @Transactional
-    public void removeMoney(AccRequestDTO accRequestDTO) throws TransferException {
+    public void removeMoney(AccRequestDTO accRequestDTO) {
         if (customValidator.validateId(accRequestDTO.getId())) {
             if (customValidator.validateSum(accRequestDTO.getSum())) {
                 if (customValidator.validateWithdrawSum(accRequestDTO.getId(), accRequestDTO.getSum())) {
@@ -66,7 +67,7 @@ public class AccountOperationService {
     }
 
     @Transactional
-    public void transferMoney(AccRequestForTransferDTO accRequestForTransferDTO) throws TransferException {
+    public void transferMoney(AccRequestForTransferDTO accRequestForTransferDTO)  {
         if (customValidator.validateId(accRequestForTransferDTO.getIdFrom())) {
             if (customValidator.validateId(accRequestForTransferDTO.getIdTo())) {
                 if (customValidator.validateTransferSum(accRequestForTransferDTO.getIdFrom(), accRequestForTransferDTO.getTransferSum())) {
