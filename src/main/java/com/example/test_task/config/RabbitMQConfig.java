@@ -36,34 +36,49 @@ public class RabbitMQConfig {
     public Queue refillQueue() {
         return new Queue("RefillQueue", false);
     }
+
     @Bean
     public Queue withdrawQueue() {
         return new Queue("WithdrawQueue", false);
     }
+
     @Bean
     public Queue transferQueue() {
         return new Queue("TransferQueue", false);
     }
-
+    //очередь для ошибок
+    @Bean
+    public Queue exceptionQueue(){
+        return new Queue("ExceptionQueue",false);
+    }
     //маршрутизатор
     @Bean
-    public DirectExchange directExchange(){
+    public DirectExchange directExchange() {
         return new DirectExchange("TransactionExchainge");
     }
+
     //маршрутизация
     //Binding для пополнения счета
     @Bean
-    public Binding refillBinding(){
+    public Binding refillBinding() {
         return BindingBuilder.bind(refillQueue()).to(directExchange()).with("refill");
     }
+
     //Binding для списания со счета
     @Bean
-    public Binding withdrawBinding(){
+    public Binding withdrawBinding() {
         return BindingBuilder.bind(withdrawQueue()).to(directExchange()).with("withdraw");
     }
+
     //Binding для перевода со счета на счет
     @Bean
-    public Binding transferBinding(){
+    public Binding transferBinding() {
         return BindingBuilder.bind(transferQueue()).to(directExchange()).with("transfer");
+    }
+
+    //Binding для ошибок в переводах
+    @Bean
+    public Binding transferExceptionBinding() {
+        return BindingBuilder.bind(exceptionQueue()).to(directExchange()).with("transfer_error");
     }
 }

@@ -2,6 +2,7 @@ package com.example.test_task.controller;
 
 import com.example.test_task.dto.AccRequestDTO;
 import com.example.test_task.dto.AccRequestForTransferDTO;
+import com.example.test_task.exceptions.CustomValidatorException;
 import com.example.test_task.exceptions.TransferException;
 import com.example.test_task.service.AccountOperationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +34,7 @@ public class TransactionController {
             description = "Внесение денежной суммы (sum) на счет по ид (id) счета"
     )
     @PatchMapping("accounts/refill")
-    public void putMoneyById(@RequestBody AccRequestDTO accRequestDTO) {
+    public void putMoneyById(@RequestBody AccRequestDTO accRequestDTO) throws TransferException {
         accountOperationService.putMoney(accRequestDTO);
     }
 
@@ -42,7 +43,7 @@ public class TransactionController {
             description = "Списание денежной суммы (sum) со счета по ид (id) счета"
     )
     @PatchMapping("accounts/withdraw")
-    public void removeMoneyById(@RequestBody AccRequestDTO accRequestDTO) {
+    public void removeMoneyById(@RequestBody AccRequestDTO accRequestDTO) throws  TransferException {
         accountOperationService.removeMoney(accRequestDTO);
     }
 
@@ -51,7 +52,9 @@ public class TransactionController {
             description = "Перевод денежной суммы (transferSum) со счета (idFrom) на счет (idTo) по ид счетов"
     )
     @PatchMapping("accounts/transfer")
-    public void transferById(@RequestBody AccRequestForTransferDTO accRequestForTransferDTO) {
+    public void transferById(@RequestBody AccRequestForTransferDTO accRequestForTransferDTO) throws TransferException {
         accountOperationService.transferMoney(accRequestForTransferDTO);
     }
+
+
 }
